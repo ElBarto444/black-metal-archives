@@ -7,8 +7,18 @@ body {
 
 h1 {
     font-family: $font-title;
+    font-size: $font-size-title;
 }
 
 .container {
     font-family: $font-base;
+    a {
+        font-family: $font-base;
+        text-decoration: none;
+        color: $primary-light;
+        transition: 250ms;
+    }
+    a:hover {
+        color: $primary-dark;
+    }
 }
