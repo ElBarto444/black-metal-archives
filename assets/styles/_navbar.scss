@@ -1,0 +1,9 @@
+@import "_variables.scss";
+
+a {
+    color: $primary-light;
+    transition: 250ms;
+}
+a:hover {
+    color: $primary-dark;
+}

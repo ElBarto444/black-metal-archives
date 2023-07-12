@@ -1,4 +1,5 @@
 @import "_theme.scss";
+@include color-mode(light);
 
 body {
     background-color: black;
@@ -7,8 +8,43 @@ body {
 
 h1 {
     font-family: $font-title;
+    font-size: $font-size-title;
 }
 
 .container {
     font-family: $font-base;
+    a {
+        font-family: $font-base;
+        text-decoration: none;
+        color: $primary-light;
+        transition: 250ms;
+    }
+    a:hover {
+        color: $primary-dark;
+    }
 }
+
+.table {
+    th, td {
+    color: $primary;
+    }
+}
+
+.btn {
+    transition: 250ms;
+}
+
+.btn:hover {
+    background-color: $primary;
+}
+
+.custom-form select {
+    color: $primary;
+}
+
+.vich-file {
+    color: $dark;
+}
+// .placeholder-style {
+//     color: $primary;
+// }
