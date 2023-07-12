@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Band
+{% endblock %}
+
+{% block body %}
+	<div class="pt-5 mt-5">
+		<div class="container flex-column align-items-center border border-primary rounded">
+			<h1 class="mt-2 pt-5 pb-2 text-center">Add a new Band</h1>
+
+			{{ form_start(form) }}
+			<div class="grid gap-3 column-gap-5 d-flex">
+				<div class="col">
+					<div class="py-4 px-4">
+						{{ form_label(form.bandName) }}
+						{{ form_widget(form.bandName) }}
+					</div>
+					<div class="py-4 px-4">
+						{{ form_label(form.bandCountry) }}
+						{{ form_widget(form.bandCountry) }}
+					</div>
+					<div class="py-4 px-4">
+						{{ form_label(form.bandYear) }}
+						{{ form_widget(form.bandYear) }}
+					</div>
+				</div>
+				<div class="col">
+					<div class="py-4 px-4">
+						{{ form_label(form.bandGenre) }}
+						{{ form_widget(form.bandGenre) }}
+					</div>
+					<div class="py-4 px-4">
+						{{ form_label(form.bandLogoFile) }}
+						{{ form_widget(form.bandLogoFile) }}
+					</div>
+					<div class="py-4 px-4">
+						{{ form_label(form.bandPictureFile) }}
+						{{ form_widget(form.bandPictureFile) }}
+					</div>
+				</div>
+			</div>
+			<button type="submit" class="btn border border-primary color-primary-light btn-lg my-5 pb-1">
+				{{ button_label|default('Submit') }}
+			</button>
+			{{ form_end(form) }}
+
+			<a href="{{ path('app_band_index') }}" type="button" class="btn border border-primary btn-lg my-5 pb-1">Back</a>
+		</div>
+	</div>
+{% endblock %}
