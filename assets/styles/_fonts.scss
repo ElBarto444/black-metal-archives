@@ -7,4 +7,13 @@
 //     font-family: "Fontspring-TheSeasons";
 //     src: url("../fonts/Fontspring-DEMO-theseasons-reg.otf") format("opentype");
 // }
-@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+// @import url('assets/fonts/FetteUNZFraktur.ttf');
+@font-face {
+    font-family: "FetteUNZFraktur";
+    src: url("../fonts/FetteUNZFraktur.ttf");
+}
+
+@font-face {
+    font-family: "F25_Executive";
+    src: url("../fonts/F25_Executive.otf");
+}
