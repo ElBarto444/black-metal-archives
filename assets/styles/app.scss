@@ -32,10 +32,15 @@ h1 {
 
 .btn {
     transition: 250ms;
+    color: $primary-light;
 }
 
 .btn:hover {
     background-color: $primary;
+}
+
+a .btn:hover {
+    color: $dark;
 }
 
 .custom-form select {

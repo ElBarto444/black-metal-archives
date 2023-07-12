@@ -29,7 +29,7 @@ class Band
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $bandPicture = null;
 
-    #[Vich\UploadableField(mapping: 'poster_file', fileNameProperty: 'bandPicture')]
+    #[Vich\UploadableField(mapping: 'band_picture_file', fileNameProperty: 'bandPicture')]
     #[Assert\File(
         maxSize: '1M',
         mimeTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'],
@@ -45,7 +45,7 @@ class Band
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $bandLogo = null;
 
-    #[Vich\UploadableField(mapping: 'poster_file', fileNameProperty: 'bandLogo')]
+    #[Vich\UploadableField(mapping: 'band_logo_file', fileNameProperty: 'bandLogo')]
     #[Assert\File(
         maxSize: '1M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],

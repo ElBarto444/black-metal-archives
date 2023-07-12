@@ -3,20 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Band;
-use Doctrine\DBAL\Types\DateTimeType;
 use Symfony\Component\Form\AbstractType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType as DateTime;
 
 class BandType extends AbstractType
 {
@@ -70,47 +63,48 @@ class BandType extends AbstractType
                     'class' => 'form-label letter-spacing fs-4'
                 ],
                 'choices' => [
-                    1983 => 0,
-                    1984 => 0,
-                    1985 => 0,
-                    1986 => 0,
-                    1987 => 0,
-                    1988 => 0,
-                    1989 => 0,
-                    1990 => 0,
-                    1991 => 0,
-                    1992 => 0,
-                    1993 => 0,
-                    1994 => 0,
-                    1995 => 0,
-                    1996 => 0,
-                    1997 => 0,
-                    1998 => 0,
-                    1999 => 0,
-                    2000 => 0,
-                    2001 => 0,
-                    2002 => 0,
-                    2003 => 0,
-                    2004 => 0,
-                    2005 => 0,
-                    2006 => 0,
-                    2007 => 0,
-                    2008 => 0,
-                    2009 => 0,
-                    2010 => 0,
-                    2011 => 0,
-                    2012 => 0,
-                    2013 => 0,
-                    2014 => 0,
-                    2015 => 0,
-                    2016 => 0,
-                    2017 => 0,
-                    2018 => 0,
-                    2019 => 0,
-                    2020 => 0,
-                    2021 => 0,
-                    2022 => 0,
-                    2023 => 0,
+                    1983 => 1983,
+                    1984 => 1984,
+                    1985 => 1985,
+                    1986 => 1986,
+                    1987 => 1987,
+                    1988 => 1988,
+                    1989 => 1989,
+                    1990 => 1990,
+                    1991 => 1991,
+                    1992 => 1992,
+                    1993 => 1993,
+                    1994 => 1994,
+                    1995 => 1995,
+                    1996 => 1996,
+                    1997 => 1997,
+                    1998 => 1998,
+                    1999 => 1999,
+                    2000 => 2000,
+                    2001 => 2001,
+                    2002 => 2002,
+                    2003 => 2003,
+                    2004 => 2004,
+                    2005 => 2005,
+                    2006 => 2006,
+                    2007 => 2007,
+                    2008 => 2008,
+                    2009 => 2009,
+                    2010 => 2010,
+                    2011 => 2011,
+                    2012 => 2012,
+                    2013 => 2013,
+                    2014 => 2014,
+                    2015 => 2015,
+                    2016 => 2016,
+                    2017 => 2017,
+                    2018 => 2018,
+                    2019 => 2019,
+                    2020 => 2020,
+                    2021 => 2021,
+                    2022 => 2022,
+                    2023 => 2023,
+
                 ]
 
             ])
