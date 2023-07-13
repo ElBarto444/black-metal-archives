@@ -9,9 +9,9 @@
 			<h1 class="mt-2 pt-5 pb-4">{{ band.bandName }}</h1>
 
 			<div class="container d-flex flex-column">
-				<div class="grid border rounded border-primary d-flex p-4">
+				<div class="grid border rounded border-primary d-flex p-4 fs-5">
 					<div class="col-6 text-center">
-						<div class="py-5"><img height="350" src="{{ vich_uploader_asset(band, 'bandLogoFile') }}" alt="{{ band.bandLogo }}"></div>
+						<div class="py-5"><img height="350" class="rounded" src="{{ vich_uploader_asset(band, 'bandLogoFile') }}" alt="{{ band.bandLogo }}"></div>
 						<div>
 							<h4>Band name</h4>
 							<p>{{ band.bandName }}</p>
@@ -22,7 +22,7 @@
 						</div>
 					</div>
 					<div class="col-6 text-center">
-						<div class="py-5"><img height="350" src="{{ vich_uploader_asset(band, 'bandPictureFile') }}" alt="{{ band.bandPicture }}"></div>
+						<div class="py-5"><img height="350" class="rounded" src="{{ vich_uploader_asset(band, 'bandPictureFile') }}" alt="{{ band.bandPicture }}"></div>
 						<div>
 							<h4>Country</h4>
 							<p>{{ band.bandCountry }}</p>

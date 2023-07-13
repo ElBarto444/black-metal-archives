@@ -48,7 +48,7 @@ class Band
     #[Vich\UploadableField(mapping: 'band_logo_file', fileNameProperty: 'bandLogo')]
     #[Assert\File(
         maxSize: '1M',
-        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+        mimeTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'],
     )]
     private ?File $bandLogoFile = null;
 
