@@ -43,6 +43,8 @@ class BandType extends AbstractType
                     'class' => 'form-label letter-spacing fs-4'
                 ],
                 'required' => false,
+                'download_uri' => false,
+                'allow_delete' => false,
             ])
             ->add('bandCountry', CountryType::class, [
                 'attr' => [
@@ -117,6 +119,8 @@ class BandType extends AbstractType
                     'class' => 'form-label letter-spacing fs-4'
                 ],
                 'required' => false,
+                'download_uri' => false,
+                'allow_delete' => false,
             ]);
     }
 

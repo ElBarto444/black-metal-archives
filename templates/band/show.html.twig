@@ -5,11 +5,11 @@
 
 {% block body %}
 	<div class="pt-5 mt-5">
-		<div class="container d-flex flex-column align-items-center border border-primary rounded mb-4">
+		<div class="container d-flex flex-column text-center align-items-center border border-primary rounded mb-4">
 			<h1 class="mt-2 pt-5 pb-4">{{ band.bandName }}</h1>
 
-			<div class="container d-flex flex-column">
-				<div class="grid border rounded border-primary d-flex p-4 fs-5">
+			<div class="container border rounded border-primary p-4 fs-5">
+				<div class="row">
 					<div class="col-6 text-center">
 						<div class="py-5"><img height="350" class="rounded" src="{{ vich_uploader_asset(band, 'bandLogoFile') }}" alt="{{ band.bandLogo }}"></div>
 						<div>
@@ -33,9 +33,34 @@
 						</div>
 					</div>
 				</div>
-				<div class="my-5 mx-3 d-flex justify-content-between align-item-center">
-					<a href="{{ path('app_band_index') }}" type="button" class="btn border border-primary btn-lg">Return</a>
-					<a href="{{ path('app_band_edit', {'id': band.id}) }}" type="button" class="btn border border-primary btn-lg">Edit band</a>
-					{{ include('band/_delete_form.html.twig') }}
+				<div class="row pt-5 mt-5 border-top border-primary">
+					<div class="col-12">
+						<h4 class="text-center pb-4">Releases by
+							{{ band.bandName }}</h4>
+						<div class="d-flex flex-row justify-content-around pb-4">
+							{% for album in band.albums %}
+								<div class="d-flex flex-column border border-primary rounded w-25">
+									<a class="d-flex flex-column pt-4" href="path{{ path('app_album_show', {'id': album.id}) }}) }}">
+										<img class="m-auto" width="150" src="{{ vich_uploader_asset(album, 'albumCoverFile') }}" alt="{{ album.albumCover }}">
+										<p class="mt-3">{{ album.albumTitle }}</p>
+										<p></p>
+									</a>
+									<p class="mb-2">{{ album.albumYear|date('d-M-y') }}</p>
+								</div>
+							{% else %}
+								<div>
+									<p>{{ band.bandName }}
+										has no releases yet</p>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
 				</div>
-			{% endblock %}
+			</div>
+			<div class="my-5 mx-3 d-flex justify-content-around w-100">
+				<a href="{{ path('app_band_index') }}" type="button" class="btn border border-primary btn-lg">Return</a>
+				<a href="{{ path('app_band_edit', {'id': band.id}) }}" type="button" class="btn border border-primary btn-lg">Edit band</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
