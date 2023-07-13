@@ -17,7 +17,7 @@ class BandController extends AbstractController
     public function index(BandRepository $bandRepository): Response
     {
         return $this->render('band/index.html.twig', [
-            'bands' => $bandRepository->findAll(),
+            'bands' => $bandRepository->findBy([], ['bandName' => 'ASC']),
         ]);
     }
 
