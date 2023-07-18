@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 class BandType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    {   
         $builder
             ->add('bandName', TextType::class, [
                 'attr' => [
@@ -106,9 +106,8 @@ class BandType extends AbstractType
                     2021 => 2021,
                     2022 => 2022,
                     2023 => 2023,
-
-                ]
-
+                ],
+                'placeholder' => 'Select year',
             ])
             ->add('bandLogoFile', VichFileType::class, [
                 'attr' => [
