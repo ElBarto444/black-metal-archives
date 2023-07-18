@@ -1,38 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Album{% endblock %}
+{% block title %}Album
+{% endblock %}
 
 {% block body %}
-    <h1>Album</h1>
+	<div class="pt-5 mt-5">
+		<div class="container d-flex flex-column text-center align-items-center border border-primary rounded mb-4">
+			<h1 class="mt-2 pt-5 pb-4">{{ album.albumTitle }}
+				by
+				{{ album.bandName.bandName }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ album.id }}</td>
-            </tr>
-            <tr>
-                <th>AlbumTitle</th>
-                <td>{{ album.albumTitle }}</td>
-            </tr>
-            <tr>
-                <th>AlbumYear</th>
-                <td>{{ album.albumYear ? album.albumYear|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>AlbumCover</th>
-                <td>{{ album.albumCover }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ album.updatedAt ? album.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_album_index') }}">back to list</a>
-
-    <a href="{{ path('app_album_edit', {'id': album.id}) }}">edit</a>
-
-    {{ include('album/_delete_form.html.twig') }}
+			<div class="container border rounded border-primary p-4 fs-5">
+				<div class="row">
+					<div class="col-6 text-center">
+						<div>
+							<img class="img my-5" style="height: 550px" src="{{ vich_uploader_asset(album, 'albumCoverFile') }}" alt="{{ album.albumCover }}">
+						</div>
+					</div>
+					<div class="col-6 text-center">
+						<div class="py-5"><img height="350" class="rounded" src="" alt=""></div>
+						<div>
+							<h4>Released
+								{{ album.albumYear|date('d-M-y') }}</h4>
+						</div>
+					</div>
+				</div>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Album title</th>
+							<td>{{ album.albumTitle }}</td>
+						</tr>
+						<tr>
+							<th>Date of Release</th>
+							<td>{{ album.albumYear ? album.albumYear|date('Y-m-d') : '' }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>Updated
+					{{ album.updatedAt ? album.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
+			</div>
+			<div class="my-5 mx-3 d-flex justify-content-around w-100">
+				<a href="{{ app.request.headers.get('referer') }}" type="button" class="btn border border-primary btn-lg">Return</a>
+				<a href="{{ path('app_album_edit', {'id': album.id}) }}" type="button" class="btn border border-primary btn-lg">Edit album</a>
+			</div>
+		</div>
+	</div>
 {% endblock %}
