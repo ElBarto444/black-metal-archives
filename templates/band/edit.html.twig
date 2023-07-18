@@ -9,7 +9,7 @@
 			<h1 class="mt-2 pt-5 pb-2 text-center">Edit current band</h1>
 
 			{{ form_start(form) }}
-			<div class="grid gap-3 column-gap-5 d-flex">
+			<div class="grid gap-3 column-gap-5 d-flex pb-5">
 				<div class="col">
 					<div class="py-4 px-4">
 						{{ form_label(form.bandName) }}
@@ -43,13 +43,16 @@
 					</div>
 				</div>
 			</div>
-			<button type="submit" class="btn border border-primary color-primary-light btn-lg my-5 pb-1">
-				{{ button_label|default('Submit') }}
-			</button>
-			<a role="button" class="btn border border-primary color-primary-light btn-lg my-5 pb-1" href="{{ path('app_band_show', {'id': band.id}) }}">Return</a>
-            <a role="button" class="btn border border-primary color-primary-light btn-lg my-5 pb-1" href="{{ path('app_album_new', {'id': band.id}) }}">Add an album</a>
-
-			{{ include('band/_delete_form.html.twig') }}
+			<div class="border-top border-primary">
+				<div class="my-5 mx-3 d-flex justify-content-around align-items-center w-100">
+					<a role="button" class="btn border border-primary color-primary-light btn-lg pb-1" href="{{ path('app_band_show', {'id': band.id}) }}">Return</a>
+					<button type="submit" class="btn border border-primary color-primary-light btn-lg pb-1">
+						{{ button_label|default('Submit') }}
+					</button>
+					<a role="button" class="btn border border-primary color-primary-light btn-lg pb-1" href="{{ path('app_album_new', {'id': band.id}) }}">Add an album</a>
+					{{ include('band/_delete_form.html.twig') }}
+				</div>
+			</div>
 		</div>
 	</div>
 {% endblock %}

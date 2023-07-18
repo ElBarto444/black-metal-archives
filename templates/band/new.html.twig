@@ -9,7 +9,7 @@
 			<h1 class="mt-2 pt-5 pb-2 text-center">Add a new Band</h1>
 
 			{{ form_start(form) }}
-			<div class="grid gap-3 column-gap-5 d-flex">
+			<div class="grid gap-3 column-gap-5 d-flex mb-5">
 				<div class="col">
 					<div class="py-4 px-4">
 						{{ form_label(form.bandName) }}
@@ -39,12 +39,15 @@
 					</div>
 				</div>
 			</div>
-			<button type="submit" class="btn border border-primary color-primary-light btn-lg my-5 pb-1">
-				{{ button_label|default('Submit') }}
-			</button>
+			<div class="border-top border-primary">
+				<div class="my-5 mx-3 d-flex justify-content-around w-100">
+					<a href="{{ path('app_band_index') }}" type="button" class="btn border border-primary btn-lg">Back</a>
+					<button type="submit" class="btn border border-primary color-primary-light btn-lg">
+						{{ button_label|default('Submit') }}
+					</button>
+				</div>
+			</div>
 			{{ form_end(form) }}
-
-			<a href="{{ path('app_band_index') }}" type="button" class="btn border border-primary btn-lg my-5 pb-1">Back</a>
 		</div>
 	</div>
 {% endblock %}

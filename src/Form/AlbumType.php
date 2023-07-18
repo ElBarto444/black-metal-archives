@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Band;
 use App\Entity\Album;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -61,6 +63,10 @@ class AlbumType extends AbstractType
                     'class' => Band::class,
                     'expanded' => false,
                     'choice_label' => 'bandName',
+                    'query_builder' => function (EntityRepository $entityRepository): QueryBuilder {
+                        return $entityRepository->createQueryBuilder('bn')
+                            ->orderBy('bn.bandName', 'ASC');
+                    },
                 ]
             );
     }

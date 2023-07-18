@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Band;
 use App\Form\BandType;
+use App\Repository\AlbumRepository;
 use App\Repository\BandRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

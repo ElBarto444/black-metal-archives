@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Album;
 use App\Form\AlbumType;
+use App\Entity\Band;
 use App\Repository\AlbumRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class AlbumController extends AbstractController
     public function index(AlbumRepository $albumRepository): Response
     {
         return $this->render('album/index.html.twig', [
-            'albums' => $albumRepository->findAll(),
+            'albums' => $albumRepository->findBy([], ['albumYear' => 'ASC']),
         ]);
     }
 
@@ -25,6 +26,7 @@ class AlbumController extends AbstractController
     public function new(Request $request, AlbumRepository $albumRepository): Response
     {
         $album = new Album();
+        $band = new Band();
 
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
@@ -38,6 +40,7 @@ class AlbumController extends AbstractController
         return $this->renderForm('album/new.html.twig', [
             'album' => $album,
             'form' => $form,
+            'band' => $band,
         ]);
     }
 

@@ -51,6 +51,14 @@ a .btn:hover {
     color: $dark;
     flex-direction: row;
 }
+
+.custom-card {
+    transition: 250ms;
+}
+
+.custom-card:hover {
+    background-color: rgb(29, 29, 29);
+}
 // .placeholder-style {
 //     color: $primary;
 // }
