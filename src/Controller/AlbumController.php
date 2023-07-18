@@ -45,10 +45,11 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_album_show', methods: ['GET'])]
-    public function show(Album $album): Response
+    public function show(Album $album, Band $band): Response
     {
         return $this->render('album/show.html.twig', [
             'album' => $album,
+            'band' => $band,
         ]);
     }
 
