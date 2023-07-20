@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\SongTracklist;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AlbumRepository;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -44,12 +45,15 @@ class Album
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $updatedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'songAlbum', targetEntity: Song::class)]
-    private Collection $songs;
+    #[ORM\OneToMany(mappedBy: 'album', targetEntity: SongTracklist::class, orphanRemoval: true, cascade: ['persist'])]
+    private Collection $songTracklists;
+
+    #[ORM\Column(length: 255)]
+    private ?string $albumType = null;
 
     public function __construct()
     {
-        $this->songs = new ArrayCollection();
+        $this->songTracklists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -157,31 +161,43 @@ class Album
     }
 
     /**
-     * @return Collection<int, Song>
+     * @return Collection<int, SongTracklist>
      */
-    public function getSongs(): Collection
+    public function getSongTracklists(): Collection
     {
-        return $this->songs;
+        return $this->songTracklists;
     }
 
-    public function addSong(Song $song): static
+    public function addSongTracklist(SongTracklist $songTracklist): static
     {
-        if (!$this->songs->contains($song)) {
-            $this->songs->add($song);
-            $song->setSongAlbum($this);
+        if (!$this->songTracklists->contains($songTracklist)) {
+            $this->songTracklists->add($songTracklist);
+            $songTracklist->setSong($this);
         }
 
         return $this;
     }
 
-    public function removeSong(Song $song): static
+    public function removeSongTracklist(SongTracklist $songTracklist): static
     {
-        if ($this->songs->removeElement($song)) {
+        if ($this->songTracklists->removeElement($songTracklist)) {
             // set the owning side to null (unless already changed)
-            if ($song->getSongAlbum() === $this) {
-                $song->setSongAlbum(null);
+            if ($songTracklist->getSong() === $this) {
+                $songTracklist->setSong(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAlbumType(): ?string
+    {
+        return $this->albumType;
+    }
+
+    public function setAlbumType(string $albumType): static
+    {
+        $this->albumType = $albumType;
 
         return $this;
     }
