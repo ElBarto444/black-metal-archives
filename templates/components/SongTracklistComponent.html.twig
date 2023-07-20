@@ -1,0 +1,45 @@
+<div{{attributes}}>
+	{{ form_start(form) }}
+	{{ form_row(form.albumTitle) }}
+	{{ form_row(form.albumYear) }}
+	{{ form_row(form.albumCoverFile) }}
+	{{ form_row(form.albumType) }}
+	{{ form_row(form.bandName) }}
+	<table class="table table-borderless mt-5">
+		<thead>
+			<tr>
+				<td>#</td>
+				<td>Title</td>
+				<td>Duration</td>
+				<td>Lyrics</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for songForm in form.songTracklists %}
+				<tr>
+					<td>
+						{{ form_widget(songForm.songNumber) }}
+					</td>
+					<td>
+						{{ form_widget(songForm.songTitle) }}
+					</td>
+					<td>
+						{{ form_widget(songForm.songDuration) }}
+					</td>
+					<td>
+						{{ form_widget(songForm.songLyrics) }}
+					</td>
+					<td>
+						{{ form_row(songForm.vars.button_delete, { label: 'X', attr: { class: 'btn btn-outline-danger' } }) }}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{{ form_widget(form.songTracklists.vars.button_add, { label: '+ Add track', attr: { class: 'btn btn-outline-primary' } }) }}
+
+	<button class="btn btn-primary">{{ button_label|default('Submit') }}</button>
+	{{ form_end(form) }}
+
+</div>

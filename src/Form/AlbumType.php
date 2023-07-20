@@ -14,6 +14,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class AlbumType extends AbstractType
 {
@@ -51,6 +53,25 @@ class AlbumType extends AbstractType
                 'download_uri' => false,
                 'allow_delete' => false,
             ])
+            ->add('albumType', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control border border-primary placeholder-style',
+                ],
+                'label' => 'Album title',
+                'label_attr' => [
+                    'class' => 'form-label letter-spacing fs-4'
+                ],
+                'choices' => [
+                    'Full-length' => 'Full-length',
+                    'EP' => 'EP',
+                    'Demo' => 'Demo',
+                    'Split' => 'Split',
+                    'Live album' => 'Live album',
+                    'Compilation' => 'Compilation'
+                ],
+                'expanded' => false,
+                'multiple' => false,
+            ])
             ->add(
                 'bandName',
                 EntityType::class,
@@ -70,7 +91,15 @@ class AlbumType extends AbstractType
                             ->orderBy('bn.bandName', 'ASC');
                     },
                 ]
-            );
+            )
+            ->add('songTracklists', LiveCollectionType::class, [
+                'entry_type' => SongTracklistForm::class,
+                'entry_options' => ['label' => false],
+                'label' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

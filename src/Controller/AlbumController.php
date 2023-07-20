@@ -6,7 +6,9 @@ use App\Entity\Band;
 use App\Entity\Song;
 use App\Entity\Album;
 use App\Form\AlbumType;
+use App\Entity\SongTracklist;
 use App\Repository\AlbumRepository;
+use App\Repository\SongTracklistRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,10 +48,16 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_album_show', methods: ['GET'])]
-    public function show(Album $album, Band $band): Response
+    public function show(
+        Album $album,
+        Band $band,
+        SongTracklistRepository $songTracklistRepository,
+        SongTracklist $songTracklist
+    ): Response
     {
-        return $this->render('album/show.html.twig', [
+            return $this->render('album/show.html.twig', [
             'album' => $album,
+            'songTracklist' => $songTracklistRepository->findBy([], ['songNumber' => 'ASC']),
             'band' => $band,
         ]);
     }
@@ -57,8 +65,6 @@ class AlbumController extends AbstractController
     #[Route('/{id}/edit', name: 'app_album_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Album $album, AlbumRepository $albumRepository): Response
     {
-        $band = new Band();
-        $song = new Song();
 
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
@@ -69,10 +75,8 @@ class AlbumController extends AbstractController
             return $this->redirectToRoute('app_album_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('album/edit.html.twig', [
+        return $this->render('album/edit.html.twig', [
             'album' => $album,
-            'band' => $band,
-            'song' => $song,
             'form' => $form,
         ]);
     }
@@ -80,7 +84,7 @@ class AlbumController extends AbstractController
     #[Route('/{id}', name: 'app_album_delete', methods: ['POST'])]
     public function delete(Request $request, Album $album, AlbumRepository $albumRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$album->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $album->getId(), $request->request->get('_token'))) {
             $albumRepository->remove($album, true);
         }
 
