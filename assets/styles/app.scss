@@ -69,6 +69,19 @@ a .btn:hover {
     color: $primary-light;
 }
 
+.form-control::placeholder {
+    color: rgb(109, 109, 109);
+    font-size: large;
+}
+
+.login-key path {
+    transition: 250ms;
+}
+
+.login-key:hover path {
+    fill: $primary-light;
+}
+
 // .placeholder-style {
 //     color: $primary;
 // }

@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/album')]
 class AlbumController extends AbstractController
@@ -25,6 +26,7 @@ class AlbumController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_album_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AlbumRepository $albumRepository): Response
     {
@@ -62,6 +64,7 @@ class AlbumController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_album_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Album $album, AlbumRepository $albumRepository): Response
     {

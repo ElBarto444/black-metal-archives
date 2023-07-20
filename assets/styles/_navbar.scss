@@ -7,3 +7,11 @@ a {
 a:hover {
     color: $primary-dark;
 }
+
+svg path {
+    transition: 250ms;
+}
+
+svg:hover path {
+    fill: $primary-light;
+}
