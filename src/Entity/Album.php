@@ -45,7 +45,7 @@ class Album
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $updatedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'album', targetEntity: SongTracklist::class, orphanRemoval: true, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'album', targetEntity: SongTracklist::class, cascade: ['persist'])]
     private Collection $songTracklists;
 
     #[ORM\Column(length: 255)]

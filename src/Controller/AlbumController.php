@@ -29,7 +29,7 @@ class AlbumController extends AbstractController
     public function new(Request $request, AlbumRepository $albumRepository): Response
     {
         $album = new Album();
-        $band = new Band();
+        $band = $album->getBandName();
 
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
