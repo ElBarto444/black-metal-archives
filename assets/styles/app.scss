@@ -6,6 +6,11 @@ body {
     color: white;
 }
 
+.bg-base-body {
+    background-image: url('/assets/images/forest.webp');
+    background-position-y: 3rem;
+}
+
 h1 {
     font-family: $font-title;
     font-size: $font-size-title;
