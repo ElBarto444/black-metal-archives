@@ -21,7 +21,7 @@
 						<tr>
 							<td><a href="{{ path('app_band_show', {'id': band.id}) }}">{{ band.bandName }}</a></td>
 							<td>{{ band.bandGenre }}</td>
-							<td>{{ band.bandCountry }}</td>
+							<td>{{ band.bandCountry|country_name }}</td>
 						</tr>
 					{% else %}
 						<tr>

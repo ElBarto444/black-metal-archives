@@ -41,7 +41,7 @@
 					{{ album.updatedAt ? album.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
 			</div>
 			<div class="my-5 mx-3 d-flex justify-content-around w-100">
-				<a href="{{ app.request.headers.get('referer') }}" type="button" class="btn border border-primary btn-lg">Return</a>
+				<a href="{{ path('app_band_show', {'id': band.id}) }}" type="button" class="btn border border-primary btn-lg">Return</a>
 				<a href="{{ path('app_album_edit', {'id': album.id}) }}" type="button" class="btn border border-primary btn-lg">Edit album</a>
 			</div>
 		</div>

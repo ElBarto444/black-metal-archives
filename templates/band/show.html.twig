@@ -25,7 +25,7 @@
 						<div class="py-5"><img height="350" class="rounded" src="{{ vich_uploader_asset(band, 'bandPictureFile') }}" alt="{{ band.bandPicture }}"></div>
 						<div>
 							<h4>Country</h4>
-							<p>{{ band.bandCountry }}</p>
+							<p>{{ band.bandCountry|country_name }}</p>
 						</div>
 						<div>
 							<h4>Year of formation</h4>

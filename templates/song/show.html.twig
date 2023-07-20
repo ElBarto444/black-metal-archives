@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Song{% endblock %}
+
+{% block body %}
+    <h1>Song</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ song.id }}</td>
+            </tr>
+            <tr>
+                <th>SongTitle</th>
+                <td>{{ song.songTitle }}</td>
+            </tr>
+            <tr>
+                <th>SongNumber</th>
+                <td>{{ song.songNumber }}</td>
+            </tr>
+            <tr>
+                <th>SongDuration</th>
+                <td>{{ song.songDuration ? song.songDuration|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>SongLyrics</th>
+                <td>{{ song.songLyrics }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_song_index') }}">back to list</a>
+
+    <a href="{{ path('app_song_edit', {'id': song.id}) }}">edit</a>
+
+    {{ include('song/_delete_form.html.twig') }}
+{% endblock %}
