@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login
+{% endblock %}
+
+{% block body %}
+	<div class="pt-5 mt-5">
+		<div class="container bg-dark d-flex flex-column text-center align-items-center border border-primary rounded mb-4">
+			<h1 class="mt-2 pt-5 pb-4">Login</h1>
+			{% if error %}
+				<div class="fs-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
+			<div class="container d-flex justify-content-center mt-5">
+
+				<form class="w-100" action="{{ path('app_login') }}" method="post">
+					<div class="row">
+						<div class="col-4">{{ include('/components/svg/chalice.svg.twig') }}</div>
+						<div class="col-4">
+							<div class="my-4">
+								<label class="fs-4 mb-2" for="username">Username:</label>
+								<input placeholder="Enter username..." class="form-control border border-primary placeholder-style" type="text" id="username" name="_username" value="{{ last_username }}">
+							</div>
+							<div class="my-4">
+								<label class="fs-4 mb-2" for="password">Password:</label>
+								<input placeholder="Enter password..." class="form-control border border-primary placeholder-style" type="password" id="password" name="_password">
+							</div>
+							<button class="btn border border-primary color-primary-light btn-lg pb-1 my-5" type="submit">Login</button>
+						</div>
+						
+						<div class="col-4">{{ include('/components/svg/snake.svg.twig') }}</div>
+
+						{# If you want to control the URL the user is redirected to on success
+																																																																					        <input type="hidden" name="_target_path" value="/account"> #}
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

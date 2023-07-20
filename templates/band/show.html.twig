@@ -64,7 +64,11 @@
 			</div>
 			<div class="my-5 mx-3 d-flex justify-content-around w-100">
 				<a href="{{ path('app_band_index') }}" type="button" class="btn border border-primary btn-lg">Return</a>
+
+				{% if is_granted('ROLE_ADMIN') %}
 				<a href="{{ path('app_band_edit', {'id': band.id}) }}" type="button" class="btn border border-primary btn-lg">Edit band</a>
+				{% endif %}
+				
 			</div>
 		</div>
 	</div>
