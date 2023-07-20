@@ -48,6 +48,8 @@ class AlbumType extends AbstractType
                     'class' => 'form-label letter-spacing fs-4'
                 ],
                 'required' => false,
+                'download_uri' => false,
+                'allow_delete' => false,
             ])
             ->add(
                 'bandName',

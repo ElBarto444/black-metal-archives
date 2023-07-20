@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Band;
+use App\Entity\Song;
 use App\Entity\Album;
 use App\Form\AlbumType;
-use App\Entity\Band;
 use App\Repository\AlbumRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,6 +57,9 @@ class AlbumController extends AbstractController
     #[Route('/{id}/edit', name: 'app_album_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Album $album, AlbumRepository $albumRepository): Response
     {
+        $band = new Band();
+        $song = new Song();
+
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
 
@@ -67,6 +71,8 @@ class AlbumController extends AbstractController
 
         return $this->renderForm('album/edit.html.twig', [
             'album' => $album,
+            'band' => $band,
+            'song' => $song,
             'form' => $form,
         ]);
     }

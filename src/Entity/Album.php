@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AlbumRepository;
@@ -41,6 +43,14 @@ class Album
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $updatedAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'songAlbum', targetEntity: Song::class)]
+    private Collection $songs;
+
+    public function __construct()
+    {
+        $this->songs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -142,6 +152,36 @@ class Album
     public function setUpdatedAt(?DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Song>
+     */
+    public function getSongs(): Collection
+    {
+        return $this->songs;
+    }
+
+    public function addSong(Song $song): static
+    {
+        if (!$this->songs->contains($song)) {
+            $this->songs->add($song);
+            $song->setSongAlbum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSong(Song $song): static
+    {
+        if ($this->songs->removeElement($song)) {
+            // set the owning side to null (unless already changed)
+            if ($song->getSongAlbum() === $this) {
+                $song->setSongAlbum(null);
+            }
+        }
 
         return $this;
     }

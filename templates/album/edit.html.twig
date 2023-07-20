@@ -3,11 +3,43 @@
 {% block title %}Edit Album{% endblock %}
 
 {% block body %}
-    <h1>Edit Album</h1>
+<div class="pt-5 mt-5 pb-4">
+		<div class="container flex-column align-items-center border border-primary rounded">
+			<h1 class="mt-2 pt-5 pb-2 text-center">Edit <span class="custom-text">{{ album.albumTitle }}</span> by <span class="custom-text">{{ album.bandName.bandName }}</span></h1>
 
-    {{ include('album/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_album_index') }}">back to list</a>
-
-    {{ include('album/_delete_form.html.twig') }}
+			{{ form_start(form) }}
+			<div class="grid gap-3 column-gap-5 d-flex pb-5">
+				<div class="col">
+					<div class="py-4 px-4">
+						{{ form_label(form.albumTitle) }}
+						{{ form_widget(form.albumTitle) }}
+					</div>
+					<div class="py-4 px-4">
+						{{ form_label(form.albumYear) }}
+						{{ form_widget(form.albumYear) }}
+					</div>
+					<div class="py-4 px-4">
+						{{ form_label(form.albumCoverFile) }}
+						{{ form_widget(form.albumCoverFile) }}
+					</div>
+				</div>
+				<div class="col">
+					<div class="py-4 px-4">
+						{{ form_label(form.bandName) }}
+						{{ form_widget(form.bandName) }}
+					</div>
+				</div>
+			</div>
+			<div class="border-top border-primary">
+				<div class="my-5 mx-3 d-flex justify-content-around align-items-center w-100">
+					<a role="button" class="btn border border-primary color-primary-light btn-lg pb-1" href="{{ path('app_album_show', {'id': album.id}) }}">Return</a>
+                    <a role="button" class="btn border border-primary color-primary-light btn-lg pb-1" href="{{ path('app_song_edit', {'id': song.id}) }}">Edit tracklist</a>
+					<button type="submit" class="btn border border-primary color-primary-light btn-lg pb-1">
+						{{ button_label|default('Submit') }}
+					</button>
+				</div>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
 {% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Song
+{% endblock %}
+
+{% block body %}
+	<div class="pt-5 mt-5">
+		<div class="container flex-column align-items-center border border-primary rounded">
+			<h1 class="mt-2 pt-5 pb-2 text-center">Add a tracklist</h1>
+
+			{{ form_start(form) }}
+			<div class="d-flex mb-5 ">
+				<div class="col-8">
+					<div class="d-flex flex-row">
+						<div class="py-4" style="width: 10%">
+							{{ form_label(form.songNumber) }}
+							{{ form_widget(form.songNumber) }}
+						</div>
+						<div class="py-4 px-2 w-75">
+							{{ form_label(form.songTitle) }}
+							{{ form_widget(form.songTitle) }}
+						</div>
+						<div class="py-4 px-0 me-5">
+							{{ form_label(form.songDuration) }}
+							{{ form_widget(form.songDuration) }}
+						</div>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="d-flex flex-row">
+						<div class="py-4 px-2 w-100">
+							{{ form_label(form.songLyrics) }}
+							{{ form_widget(form.songLyrics) }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="border-top border-primary">
+				<div class="my-5 mx-3 d-flex justify-content-around w-100">
+					<a href="{{ app.request.headers.get('referer') }}" type="button" class="btn border border-primary btn-lg">Back</a>
+					<button type="submit" class="btn border border-primary color-primary-light btn-lg">
+						{{ button_label|default('Submit') }}
+					</button>
+				</div>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}
