@@ -146,4 +146,28 @@ class SongTracklist
 
         return $this;
     }
+
+    /**
+     * Get the value of album
+     *
+     * @return ?Album
+     */
+    public function getAlbum(): ?Album
+    {
+        return $this->album;
+    }
+
+    /**
+     * Set the value of album
+     *
+     * @param ?Album $album
+     *
+     * @return self
+     */
+    public function setAlbum(?Album $album): self
+    {
+        $this->album = $album;
+
+        return $this;
+    }
 }
