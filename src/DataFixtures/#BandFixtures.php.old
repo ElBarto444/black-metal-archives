@@ -1,0 +1,40 @@
+<?php
+
+namespace App\DataFixtures;
+
+use App\Entity\Band;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+
+class BandFixtures extends Fixture
+{
+    public const BANDS = [
+        [
+            'bandName' => 'Merrimack',
+            'bandGenre' => 'Black Metal',
+            'bandYear' => '1994',
+            'bandCountry' => 'France',
+            'bandLogo' => 'assets/images/logo/7714_logo.jpg',
+            'bandPicture' => 'assets/images/band/Merrimack.jpg',
+        ]
+    ];
+
+    public function load(ObjectManager $manager): void
+    {
+        foreach (self::BANDS as $key => $bandName) {
+            $band = new Band();
+            $band->setBandName($bandName['bandName'])
+                ->setBandGenre($bandName['bandGenre'])
+                ->setBandYear($bandName['bandYear'])
+                ->setBandCountry($bandName['bandCountry'])
+                ->setBandLogo($bandName['bandLogo'])
+                ->setBandPicture($bandName['bandPicture']);
+
+            $manager->persist($band);
+
+            $this->addReference('band_' . $key, $band);
+        }
+
+        $manager->flush();
+    }
+}

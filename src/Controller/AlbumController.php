@@ -39,7 +39,7 @@ class AlbumController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $albumRepository->save($album, true);
 
-            return $this->redirectToRoute('app_album_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_band_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('album/new.html.twig', [
@@ -52,15 +52,12 @@ class AlbumController extends AbstractController
     #[Route('/{id}', name: 'app_album_show', methods: ['GET'])]
     public function show(
         Album $album,
-        Band $band,
         SongTracklistRepository $songTracklistRepository,
-        SongTracklist $songTracklist
     ): Response
     {
             return $this->render('album/show.html.twig', [
             'album' => $album,
             'songTracklist' => $songTracklistRepository->findBy([], ['songNumber' => 'ASC']),
-            'band' => $band,
         ]);
     }
 
@@ -75,7 +72,7 @@ class AlbumController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $albumRepository->save($album, true);
 
-            return $this->redirectToRoute('app_album_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_band_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('album/edit.html.twig', [
@@ -91,6 +88,6 @@ class AlbumController extends AbstractController
             $albumRepository->remove($album, true);
         }
 
-        return $this->redirectToRoute('app_album_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_band_index', [], Response::HTTP_SEE_OTHER);
     }
 }
