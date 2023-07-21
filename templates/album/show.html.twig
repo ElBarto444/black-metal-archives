@@ -46,19 +46,20 @@
 							<h4 class="mt-3">Tracklist</h4>
 						</div>
 						{% for song in songTracklist %}
-							<div>
-								<ul class="ps-0">
-									<li class="d-flex flex-row p-0 justify-content-between border-top border-primary">
-										<p class="mb-0 mt-3">{{ song.songNumber }}</p>
-										<p class="mb-0 mt-3">{{ song.songTitle }}</p>
-										<p class="mb-0 mt-3">{{ song.songDuration|date('H:i') }}</p>
-									</li>
-								</ul>
-							</div>
-						{% else %}
-							<p>{{ album.albumTitle }}
-								has no known tracklist yet</p>
+							{% if song.album is same as(album) %}
+								<div>
+									<ul class="ps-0">
+										<li class="d-flex flex-row p-0 justify-content-between border-top border-primary">
+											<p class="mb-0 mt-3">{{ song.songNumber }}</p>
+											<p class="mb-0 mt-3 mx-2">{{ song.songTitle }}</p>
+											<p class="mb-0 mt-3">{{ song.songDuration|date('H:i') }}</p>
+										</li>
+									</ul>
+								</div>
+							{% endif %}
 						{% endfor %}
+							{# <p>{{ album.albumTitle }}
+								has no known tracklist yet</p> #}
 						<div class="pt-3 border-top border-primary"></div>
 					</div>
 					<div class="col-12 col-sm-6 text-center">
@@ -76,7 +77,7 @@
 				<a href="{{ app.request.headers.get('referer') }}" type="button" class="btn border border-primary btn-lg">Return</a>
 
 				{% if is_granted('ROLE_ADMIN') %}
-				<a href="{{ path('app_album_edit', {'id': album.id}) }}" type="button" class="btn border border-primary btn-lg">Edit album</a>
+					<a href="{{ path('app_album_edit', {'id': album.id}) }}" type="button" class="btn border border-primary btn-lg">Edit album</a>
 				{% endif %}
 
 			</div>
