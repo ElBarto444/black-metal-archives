@@ -57,7 +57,7 @@ class Band
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $updatedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'bandName', targetEntity: Album::class)]
+    #[ORM\OneToMany(mappedBy: 'bandName', targetEntity: Album::class, cascade: ['persist'])]
     private Collection $albums;
 
     public function __construct()

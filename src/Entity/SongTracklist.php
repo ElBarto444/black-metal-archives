@@ -17,7 +17,7 @@ class SongTracklist
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'songTracklists')]
+    #[ORM\ManyToOne(inversedBy: 'songTracklists', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Album $album = null;
 
