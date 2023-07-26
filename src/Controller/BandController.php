@@ -37,7 +37,7 @@ class BandController extends AbstractController
             return $this->redirectToRoute('app_band_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('band/new.html.twig', [
+        return $this->render('band/new.html.twig', [
             'band' => $band,
             'form' => $form,
         ]);
@@ -64,7 +64,7 @@ class BandController extends AbstractController
             return $this->redirectToRoute('app_band_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('band/edit.html.twig', [
+        return $this->render('band/edit.html.twig', [
             'band' => $band,
             'form' => $form,
         ]);

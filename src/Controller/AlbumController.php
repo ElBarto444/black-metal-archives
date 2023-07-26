@@ -42,7 +42,7 @@ class AlbumController extends AbstractController
             return $this->redirectToRoute('app_band_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('album/new.html.twig', [
+        return $this->render('album/new.html.twig', [
             'album' => $album,
             'form' => $form,
             'band' => $band,
