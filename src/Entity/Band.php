@@ -60,9 +60,13 @@ class Band
     #[ORM\OneToMany(mappedBy: 'bandName', targetEntity: Album::class, cascade: ['persist'])]
     private Collection $albums;
 
+    #[ORM\ManyToMany(targetEntity: Member::class, mappedBy: 'memberBand')]
+    private Collection $members;
+
     public function __construct()
     {
         $this->albums = new ArrayCollection();
+        $this->members = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -245,6 +249,33 @@ class Band
             if ($album->getBandName() === $this) {
                 $album->setBandName(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Member>
+     */
+    public function getMembers(): Collection
+    {
+        return $this->members;
+    }
+
+    public function addMember(Member $member): static
+    {
+        if (!$this->members->contains($member)) {
+            $this->members->add($member);
+            $member->addMemberBand($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMember(Member $member): static
+    {
+        if ($this->members->removeElement($member)) {
+            $member->removeMemberBand($this);
         }
 
         return $this;
